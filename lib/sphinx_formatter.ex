@@ -30,7 +30,7 @@ defmodule ExDoc.Formatter.SPHINX do
     generate_sphinx_scaffold(output, config)
 
     if config.formatter_opts[:gen_overview] do
-      generate_overview(modules, exceptions, protocols, ref_output, config)
+      generate_overview(modules, exceptions, protocols, output, config)
     end
     generate_list(:modules, modules, all, ref_output, config)
     generate_list(:exceptions, exceptions, all, ref_output, config)
@@ -60,7 +60,7 @@ defmodule ExDoc.Formatter.SPHINX do
     content = Templates.index_template(readme)
     :ok = File.write(Path.join(output, "index.rst"), content)
 
-    content = Templates.ref_template()
+    content = Templates.ref_template(config)
     :ok = File.write(Path.join(output, "ref.rst"), content)
 
     archive_name = Mix.Archive.name(@mix_appname, @mix_version)
@@ -94,7 +94,7 @@ defmodule ExDoc.Formatter.SPHINX do
 
   defp generate_overview(modules, exceptions, protocols, output, config) do
     content = Templates.overview_template(config, modules, exceptions, protocols)
-    :ok = File.write("#{output}/overview.rst", content)
+    :ok = File.write("#{output}/api_overview.rst", content)
   end
 
   #defp assets do

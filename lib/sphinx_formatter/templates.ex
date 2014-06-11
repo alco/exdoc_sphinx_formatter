@@ -116,7 +116,7 @@ defmodule ExDoc.Formatter.Sphinx.Templates do
   scaffold_templates = [
     index_template: {"index.rst.eex", [:readme]},
     conf_template: {"conf.py.eex", [:config]},
-    ref_template: {"ref.rst.eex", []},
+    ref_template: {"ref.rst.eex", [:config]},
   ]
 
   Enum.each templates, fn({ name, args }) ->
