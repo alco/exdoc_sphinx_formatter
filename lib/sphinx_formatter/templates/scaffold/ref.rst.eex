@@ -3,7 +3,7 @@ API Reference
 
 <%= if config.formatter_opts[:gen_overview] do %>
 .. toctree::
-  
+
    Overview <api_overview>
 <% end %>
 
