@@ -46,12 +46,16 @@ defmodule ExDoc.Formatter.SPHINX do
   @mix_version Mix.Project.config[:version]
 
   defp generate_sphinx_scaffold(output, config) do
-    readme = if config.readme do
-      content = File.read!(config.readme)
+    readme = if readme_opt=config.readme do
+      if readme_opt == true do
+        readme_opt = "README.md"
+      end
+
+      content = File.read!(readme_opt)
       rst = ExDoc.Markdown.Pandoc.convert_markdown(content, "rst", 1)
       File.write!(Path.join(output, "README.rst"), rst)
-      [_, readme] = Regex.run(~r/(.+?).[^.]+$/, config.readme)
-      readme
+      [_, readme_name] = Regex.run(~r/(.+?).[^.]+$/, readme_opt)
+      readme_name
     end
 
     content = Templates.conf_template(config)
