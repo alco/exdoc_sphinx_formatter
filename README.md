@@ -6,6 +6,13 @@ This is a custom formatter for [ExDoc][1].
   [1]: https://github.com/elixir-lang/ex_doc
 
 
+## Prerequisites
+
+SphinxFormatter relies on `pandoc` (command-line tool) and Sphinx (Python
+package) to work. Sphinx also uses a Makefile in its build process, so make
+sure you have `make` installed and working on your system.
+
+
 ## Usage
 
 To be able to use the formatter with ExDoc, it needs to be added to the load
