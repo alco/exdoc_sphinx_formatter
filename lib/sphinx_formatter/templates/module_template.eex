@@ -1,0 +1,52 @@
+<%= module.id %>
+==============================================================
+
+.. elixir:module:: <%= module.id %>
+
+   :mtype: <%= module.type %>
+
+<%= if module.moduledoc do %>
+Overview
+--------
+
+<%= md2rst(module.moduledoc, 2) |> transform_headers %>
+
+<%= if module.source do %>
+`Source <<%= module.source %>`_
+<% end %>
+<% end %>
+
+<%= unless Enum.empty?(functions) and Enum.empty?(macros) do %>
+Summary
+-------
+
+<%= render_summary_table(Enum.sort(functions ++ macros, &(&1.id <= &2.id))) %>
+<% end %>
+
+<%= unless Enum.empty?(types) do %>
+Types
+-----
+
+<%= for node <- types, do: type_detail_template(node, module) %>
+<% end %>
+
+<%= unless Enum.empty?(functions) do %>
+Functions
+---------
+
+<%= for node <- functions, do: detail_template(node, module) %>
+<% end %>
+
+<%= unless Enum.empty?(macros) do %>
+Macros
+------
+
+<%= for node <- macros, do: detail_template(node, module) %>
+<% end %>
+
+<%= unless Enum.empty?(callbacks) do %>
+Callbacks
+---------
+
+<%= for node <- callbacks, do: detail_template(node, module) %>
+<% end %>

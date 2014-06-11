@@ -1,0 +1,4 @@
+.. toctree:: 
+  
+   <%= if readme, do: readme %>
+   ref

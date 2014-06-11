@@ -1,0 +1,7 @@
+.. elixir:type:: <%= module.id %>.<%= node.id %>
+
+   <%= node.spec %>
+   
+<%= if node.doc do %>
+<%= indent 3, md2rst(node.doc) %>
+<% end %>

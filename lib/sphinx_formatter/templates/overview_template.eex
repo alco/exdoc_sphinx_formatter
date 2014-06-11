@@ -1,0 +1,54 @@
+<%= adorn_title("#{config.project} v#{config.version}") %>
+
+<%= unless Enum.empty?(modules) do %>
+* Modules_
+<% end %>
+<%= unless Enum.empty?(exceptions) do %>
+* Exceptions_
+<% end %>
+<%= unless Enum.empty?(protocols) do %>
+* Protocols_
+<% end %>
+
+<%= unless Enum.empty?(modules) do %>
+Modules
+-------
+
+<%= render_overview_table(modules) %>
+
+.. toctree::
+   :hidden:
+
+   <%= for node <- modules do %>
+   <%= node.id %>
+   <% end %>
+<% end %>
+
+
+<%= unless Enum.empty?(exceptions) do %>
+Exceptions
+----------
+
+<%= render_overview_table(exceptions) %>
+
+.. toctree::
+   :hidden:
+
+   <%= for node <- exceptions do %>
+   <%= node.id %>
+   <% end %>
+<% end %>
+
+<%= unless Enum.empty?(protocols) do %>
+Protocols
+---------
+
+<%= render_overview_table(protocols) %>
+
+.. toctree::
+   :hidden:
+
+   <%= for node <- protocols do %>
+   <%= node.id %>
+   <% end %>
+<% end %>

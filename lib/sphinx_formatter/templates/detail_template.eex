@@ -1,0 +1,16 @@
+.. elixir:<%= pretty_type(node) %>:: <%= module.id %>.<%= node.id %>
+   :sig: <%= String.replace(node.signature, "\n", " ") %>
+
+<%= if specs = get_specs(node) do %>
+   Specs:
+   
+ <%= for spec <- specs do %>
+   * <%= spec %>
+ <% end %>
+<% end %>
+   
+<%= indent(3, md2rst(node.doc, 3)) |> transform_headers %>
+   
+<%= if node.source do %>
+   `Source <<%= node.source %>>`_
+<% end %>
