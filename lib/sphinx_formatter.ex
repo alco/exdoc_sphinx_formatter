@@ -68,7 +68,7 @@ defmodule ExDoc.Formatter.SPHINX do
     :ok = File.write(Path.join(output, "ref.rst"), content)
 
     archive_name = Mix.Archive.name(@mix_appname, @mix_version)
-    priv_dir = List.to_string(:code.priv_dir(:sphinx_formatter))
+    priv_dir = List.to_string(:code.priv_dir(@mix_appname))
     verbatim_files = ["Makefile", "elixir_domain.py"]
     cp_fun = if String.contains?(priv_dir, archive_name) do
       &copy_from_archive(priv_dir, archive_name, output, &1)
