@@ -52,7 +52,7 @@ defmodule ExDoc.Formatter.SPHINX do
       end
 
       content = File.read!(readme_opt)
-      rst = ExDoc.Markdown.Pandoc.convert_markdown(content, "rst", 1)
+      rst = ExDoc.Markdown.Pandoc.to_html(content, format: "rst", header_level: 1)
       File.write!(Path.join(output, "README.rst"), rst)
       [_, readme_name] = Regex.run(~r/(.+?).[^.]+$/, readme_opt)
       readme_name

@@ -26,7 +26,7 @@ defmodule ExDoc.Formatter.Sphinx.Templates do
   # Convert markdown to HTML.
   defp md2rst(bin), do: md2rst(bin, 1)
   defp md2rst(nil, _), do: ""
-  defp md2rst(bin, lvl), do: ExDoc.Markdown.Pandoc.convert_markdown(bin, "rst", lvl)
+  defp md2rst(bin, lvl), do: ExDoc.Markdown.Pandoc.to_html(bin, format: "rst", header_level: lvl)
 
   defp indent(n, str) do
     str
